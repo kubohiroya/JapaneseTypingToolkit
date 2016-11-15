@@ -1,0 +1,37 @@
+{
+    "name": "JapanneseTypingToolkit",
+    "version": "0.0.1",
+    "description": "A Toolkit for Japanese Roma-Ji Kana Touch Typing Practice",
+    "main": "kana.js",
+    "scripts": {
+        "start": "webpack-dev-server -w --content-base build",
+        "test": "mocha",
+        "build": "webpack"
+    },
+    "author": "Hiroya Kubo <hiroya@cuc.ac.jp>",
+    "license": "MIT License",
+    "directories": {
+        "test": "test/"
+    },
+    "devDependencies": {
+        "assert": "^1.4.1",
+        "babel-core": "^6.18.2",
+        "babel-loader": "^6.2.7",
+        "bower-webpack-plugin": "^0.1.9",
+        "css-loader": "^0.25.0",
+        "html-webpack-plugin": "^2.24.1",
+        "intelli-espower-loader": "^1.0.1",
+        "mocha": "^3.1.2",
+        "power-assert": "^1.4.2",
+        "style-loader": "^0.13.1",
+        "stylus": "^0.54.5",
+        "stylus-loader": "^2.3.1",
+        "webpack": "^1.13.3",
+        "webpack-dev-server": "^1.16.2",
+        "webpack-spritesmith": "^0.2.6",
+        "file-loader": "^0.9.0",
+        "yarn": "^0.16.0"
+    },
+    "dependencies": {
+    }
+}

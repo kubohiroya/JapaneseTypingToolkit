@@ -1,0 +1,20 @@
+@keyframes blink {
+    0% { border-left: 1px solid #ff0000; }
+    25% { border-left: 1px solid #ff0000; }
+    75% { border-left: 1px solid #ffffff; }
+    100% { border-left: 1px solid #ffffff; }
+}
+@keyframes show {
+    0% { transform:scale(3.0); color: red; opacity:0.5;}
+    100% { transform:scale(1.0); color: black; opacity:1.0; }
+}
+#keyboard {
+    pointer-events: none;
+}
+#prompt,#typed{font-size: 32px;}
+#prompt>span,#typed>span{border-left: 1px solid #ffffff;}
+#typed>span>span{animation: show 2.0s ease; animation-iteration-count: 1;}
+span.cursor{animation: blink 0.8s infinite;}
+span._cursor{border-left: 1px solid #ff0000;}
+span.typedOK{color:#999999}
+span.typedNG{color:#ff0000}

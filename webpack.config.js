@@ -31,6 +31,7 @@ module.exports = {
     module: {
         loaders:[
             {test: /\.js$/, loader: "babel-loader"},
+            {test: /\.css$/, loader: "style-loader!css-loader"},
             {test: /\.html$/, loader: "file?name=build/[name].[ext]"},
             {test: /\.(svg|png|jpeg)?$/, loader:"file?name=build/img/[name].[ext]" }
         ]

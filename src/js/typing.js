@@ -1,4 +1,5 @@
 'use strict';
+require("style/keyboard.css");
 //var kana = require('./kana.js');
 //var keyboardSvgData = require('../img/keyboard_ja.svg');
 var debug = true;

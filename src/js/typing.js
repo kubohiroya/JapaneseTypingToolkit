@@ -1,5 +1,6 @@
 'use strict';
 require("style/keyboard.css");
+var TextSourceFactory = require('./textsource').TextSourceFactory;
 //var kana = require('./kana.js');
 
 var debug = true;
@@ -26,19 +27,6 @@ function removeAllChildNodes(element){
     while(element.hasChildNodes()){
         element.removeChild(element.lastChild);
     }
-}
-
-function TextSource(){
-    this.index = -1;
-    this.src = ["hogehoge","abcdefg", "AAABBBCCC", "Japanese Touch-typing Practice"];
-
-    this.getNextText = function(){
-        this.index++;
-        if(this.index == this.src.length) {
-            this.index = 0;
-        }
-        return this.src[this.index];
-    };
 }
 
 function MainPanel(document, element, callback){
@@ -281,7 +269,7 @@ function setupTypingPracticeElement(document, src){
 
 }
 
-setupTypingPracticeElement(document, new TextSource());
+setupTypingPracticeElement(document, new TextSourceFactory.newInstance());
 
 module.exports = {
     setupTypingPracticeElement:setupTypingPracticeElement

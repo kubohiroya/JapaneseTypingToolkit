@@ -22,7 +22,7 @@ function setAttribute(parentElement, name, key, value){
     }
 }
 
-function removeAllChildrenNode(element){
+function removeAllChildNodes(element){
     while(element.hasChildNodes()){
         element.removeChild(element.lastChild);
     }
@@ -95,7 +95,7 @@ function PromptField(document, element){
     this._isEnabled = false;
 
     this.clearText = function(){
-        removeAllChildrenNode(this.element);
+        removeAllChildNodes(this.element);
     };
 
     this.setText = function(text){

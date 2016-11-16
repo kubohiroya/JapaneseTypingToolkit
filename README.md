@@ -38,7 +38,7 @@ JapaneseTypingToolkit
 
 ## Install
 
-    npm i
+    yarn
 
 ## Usage
 

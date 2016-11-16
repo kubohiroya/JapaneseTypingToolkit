@@ -1,7 +1,7 @@
 'use strict';
 require("style/keyboard.css");
 //var kana = require('./kana.js');
-//var keyboardSvgData = require('../img/keyboard_ja.svg');
+
 var debug = true;
 function setAttribute(parentElement, name, key, value){
     if(! parentElement) {
@@ -65,13 +65,13 @@ function MainPanel(document, element, callback){
     this.initialize = function(callback){
         this.setEnabled(false);
         this.objectElement = this.document.createElement('object');
-        this.objectElement.setAttribute('id', 'keyboard');
         this.objectElement.setAttribute('tabindex','0');
         this.objectElement.setAttribute('type','image/svg+xml');
         this.objectElement.setAttribute('width','1190');
         this.objectElement.setAttribute('height','348');
         this.objectElement.setAttribute('data', 'img/keyboard_ja.svg');
-        this.element.appendChild(this.objectElement);
+
+        this.document.getElementById('keyboard').appendChild(this.objectElement);
 
         var _this = this;
         this.objectElement.addEventListener("load", function(){

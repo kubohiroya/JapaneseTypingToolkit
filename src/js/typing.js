@@ -181,6 +181,16 @@ function InputField(document, element){
 
 }
 
+function keyCode(e) {
+    if (document.all) {
+        return e.keyCode;
+    } else if (document.getElementById) {
+        return (e.keyCode) ? e.keyCode : e.charCode;
+    } else if (document.layers){
+        return e.which;
+    }
+}
+
 function setupTypingPracticeElement(document, src){
 
     var mainPanel = new MainPanel(document, document.getElementById("main"), function(){
@@ -213,7 +223,7 @@ function setupTypingPracticeElement(document, src){
                 return;
             }
 
-            var code = e.keyCode ? e.keyCode : e.which;
+            var code = keyCode(e);
             if(debug){
                 console.log(code);
             }
@@ -221,8 +231,6 @@ function setupTypingPracticeElement(document, src){
             if(code == 9){//tab
                 return;
             }
-
-            mainPanel.setKeyFocused(code, (e.key.length == 1)?Colors.focusedKey:Colors.focusedSpecialKey);
 
             inputField.clearCursor();
 
@@ -251,8 +259,10 @@ function setupTypingPracticeElement(document, src){
             }else if(code == 69 /*'e'*/ && e.ctrlKey){ // end
                 cursor = inputField.length();
             }else if(e.key.length == 1){
+                mainPanel.setKeyFocused(code, (e.key.length == 1)?Colors.focusedKey:Colors.focusedSpecialKey);
                 inputField.appendChar(cursor, e.key);
                 cursor += 1;
+                console.log('keydown '+code);
             }
             inputField.setCursor(cursor);
         }, false);
@@ -263,6 +273,7 @@ function setupTypingPracticeElement(document, src){
             }
             var code = e.keyCode ? e.keyCode : e.which;
             mainPanel.setKeyFocused(code, 'none');
+            console.log('keyup '+code);
         }, false);
 
     });

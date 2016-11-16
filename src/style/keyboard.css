@@ -6,7 +6,7 @@
 }
 @keyframes show {
     0% { color: red; opacity:0.5;}
-    100% { color: black; opacity:1.0; }
+    100% { color: black; opacity:1.0;}
 }
 #keyboard {
     pointer-events: none;

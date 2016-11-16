@@ -186,10 +186,7 @@ function InputField(document, element){
 
 }
 
-var src = new TextSource();
-
-
-function setupTypingPracticeElement(document){
+function setupTypingPracticeElement(document, src){
 
     var mainPanel = new MainPanel(document, document.getElementById("main"), function(){
         var promptField = new PromptField(document, document.getElementById('prompt'));
@@ -277,7 +274,7 @@ function setupTypingPracticeElement(document){
 
 }
 
-setupTypingPracticeElement(document);
+setupTypingPracticeElement(document, new TextSource());
 
 module.exports = {
     setupTypingPracticeElement:setupTypingPracticeElement

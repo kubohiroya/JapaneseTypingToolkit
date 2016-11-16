@@ -10,6 +10,7 @@
 }
 #keyboard {
     pointer-events: none;
+}
 #prompt,#typed{font-size: 32px;}
 #prompt>span,#typed>span{border-left: 1px solid #ffffff;}
 #typed>span>span{animation: show 2.0s ease; animation-iteration-count: 1;}

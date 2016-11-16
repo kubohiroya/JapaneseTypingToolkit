@@ -3,6 +3,13 @@ require("style/keyboard.css");
 //var kana = require('./kana.js');
 
 var debug = true;
+var Colors = {
+    enabled: '#fff',
+    disabled: '#bbb',
+    focusedKey: '#f88',
+    focusedSpecialKey:'#aaa'
+};
+
 function setAttribute(parentElement, name, key, value){
     if(! parentElement) {
         return;
@@ -41,9 +48,9 @@ function MainPanel(document, element, callback){
 
     this.setEnabled = function(isEnabled){
         if(isEnabled){
-            this.element.setAttribute('style', 'background-color: #fff');
+            this.element.setAttribute('style', 'background-color: '+Colors.enabled);
         }else{
-            this.element.setAttribute('style', 'background-color: #bbb;');
+            this.element.setAttribute('style', 'background-color: '+Colors.disabled);
         }
         this._isEnabled = isEnabled;
     };
@@ -104,7 +111,7 @@ function PromptField(document, element){
 
     this.setEnabled = function(isEnabled){
         this._isEnabled = isEnabled;
-        setAttribute(this.element, 'span', 'style', 'border-left-color:'+(isEnabled?'#fff':'#bbb'));
+        setAttribute(this.element, 'span', 'style', 'border-left-color:'+(isEnabled?Colors.enabled:Colors.disabled));
     };
 
     this.isEnabled = function(){
@@ -178,7 +185,7 @@ function InputField(document, element){
     };
 
     this.setEnabled = function(isEnabled){
-        setAttribute(this.element, 'span', 'style', 'border-left-color:'+(isEnabled?'#fff':'#bbb'));
+        setAttribute(this.element, 'span', 'style', 'border-left-color:'+(isEnabled?Colors.enabled:Colors.disabled));
     };
 
     this.setEnabled(false);
@@ -227,7 +234,7 @@ function setupTypingPracticeElement(document, src){
                 return;
             }
 
-            mainPanel.setKeyFocused(code, (e.key.length == 1)?'red':'yellow');
+            mainPanel.setKeyFocused(code, (e.key.length == 1)?Colors.focusedKey:Colors.focusedSpecialKey);
 
             inputField.clearCursor();
 

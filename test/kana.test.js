@@ -17,6 +17,16 @@ describe('romanizeOf', function() {
         var b = ['ti','chi'];
         assert.deepEqual(a, b);
     });
+    it('「あ」をローマ字で入力する際の候補を配列として返す', function() {
+        var a = 'a';
+        var b = kana.romanizeOf('あ');
+        assert.deepEqual(a, b);
+    });
+    it('「い」をローマ字で入力する際の候補を配列として返す', function() {
+        var a = 'i';
+        var b = kana.romanizeOf('い');
+        assert.deepEqual(a, b);
+    });
 });
 
 describe('hiraganizeOf', function() {
@@ -190,7 +200,7 @@ describe('getChildPointer', function() {
 	});
 });
 
-describe('selectCandidate', function(){
+describe('select', function(){
     var romanCode = {seq:[['ti', 'chi'], 'ba']};
     it('「ちば」をローマ字で入力する際の候補', function() {
 	assert.deepEqual(kana.select(romanCode, []), {seq:[['ti', 'chi'], 'ba']});

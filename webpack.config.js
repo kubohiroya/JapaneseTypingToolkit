@@ -4,8 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     cache: true,
     entry: {
-        main:'js/typing.js',
-        keyboard:'img/keyboard_ja.svg'
+        main:'js/typing.js'
     },
     resolve: {
         modulesDirectories: ["node_modules","src"],
@@ -13,9 +12,9 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(true),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({output:{comments: false}}),
+        //new webpack.optimize.OccurenceOrderPlugin(true),
+        //new webpack.optimize.DedupePlugin(),
+        //new webpack.optimize.UglifyJsPlugin({output:{comments: false}}),
         new HtmlWebpackPlugin({template:'src/index.html'})
     ],
     externals:{

@@ -19,6 +19,7 @@
         "babel-loader": "^6.2.7",
         "bower-webpack-plugin": "^0.1.9",
         "css-loader": "^0.25.0",
+        "file-loader": "^0.9.0",
         "html-webpack-plugin": "^2.24.1",
         "intelli-espower-loader": "^1.0.1",
         "mocha": "^3.1.2",
@@ -29,9 +30,9 @@
         "webpack": "^1.13.3",
         "webpack-dev-server": "^1.16.2",
         "webpack-spritesmith": "^0.2.6",
-        "file-loader": "^0.9.0",
         "yarn": "^0.16.0"
     },
     "dependencies": {
+        "d3": "^4.3.0",
     }
 }

@@ -8,9 +8,7 @@ var debug = false;
 
 var Colors = {
     enabled: '#fff',
-    disabled: '#bbb',
-    focusedKey: '#f88',
-    focusedSpecialKey:'#aaa'
+    disabled: '#bbb'
 };
 
 function setAttribute(parentElement, name, key, value){

@@ -18,3 +18,31 @@ span.cursor{animation: blink 0.8s infinite;}
 span._cursor{border-left: 1px solid #ff0000;}
 span.typedOK{color:#999999}
 span.typedNG{color:#ff0000}
+
+.candidates{
+    float:left;
+}
+.sequence{
+}
+.clear{
+    clear:both;
+}
+.candidates>div{
+    background-color: #ffaaaa;
+    border: 1px dotted gray;
+    text-align: center;
+    margin: 0px 1px 0px 1px;
+}
+.candidates>div.cursor{
+    border: 1px solid gray;
+}
+.sequence>div{
+    background-color: #aaaaff;
+    border: 1px dotted blue;
+    text-align: center;
+    margin: 0px 1px 0px 1px;
+    float:left;
+}
+.sequence>div.cursor{
+    border: 1px solid blue;
+}

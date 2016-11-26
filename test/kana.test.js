@@ -1,5 +1,5 @@
 var assert = require('power-assert');
-var kana = require('../kana');
+var kana = require('../src/js/kana');
 
 describe('romanizeOf', function() {
     it('「つ」をローマ字で入力する際の候補を配列として返す', function() {
@@ -48,6 +48,16 @@ describe('hiraganizeOf', function() {
     it('「chi」をローマ字で入力した結果のひらがな表現「ち」を返す', function() {
         var a = kana.hiraganizeOf('chi');
         var b = 'ち';
+        assert.deepEqual(a, b);
+    });
+    it('「ch」をローマ字で入力した結果のひらがな表現「undefined」を返す', function() {
+        var a = kana.hiraganizeOf('ch');
+        var b = undefined;
+        assert.deepEqual(a, b);
+    });
+    it('「sy」をローマ字で入力した結果のひらがな表現「undefined」を返す', function() {
+        var a = kana.hiraganizeOf('sy');
+        var b = undefined;
         assert.deepEqual(a, b);
     });
 });

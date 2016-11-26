@@ -25,7 +25,7 @@ var patterns = function(){
 				'ma','mi','mu','me','mo',
 				['xya','lya'],'ya',['xyu','lyu'],'yu',['xyo','lyo'],'yo',
 				'ra','ri','ru','re','ro',
-				['xwa','lwa'],'wa','wi','we','wo',['n','nn']
+				['xwa','lwa'],'wa','wi','we','wo', ['n','nn']
 			];
 			var data = {};
 			src.split('').forEach(function(c, i){
@@ -36,7 +36,7 @@ var patterns = function(){
 		'XゃXゅXょ': function(){
 			var data = {};
 			[['き','k'],['に', 'n'], ['ひ', 'h'], ['み', 'm'], ['り','r'],
-				['ぎ','g'], ['じ','z'], ['ぢ', 'd'], ['ば', 'b'],
+				['ぎ','g'], ['じ','z'], ['ぢ', 'd'], ['び', 'b'],
 				['ぴ','p']].forEach(function(key){
 				data[key[0]+'ゃ'] = key[1]+'ya';
 				data[key[0]+'ゅ'] = key[1]+'yu';
@@ -92,6 +92,7 @@ var patterns = function(){
 		var value = romanizer[key];
 		addHiraganaItem(key, value);
 	});
+	//mixInHiraganizedPrefixPatterns(hiraganizer);
 	return {romanizer:romanizer, hiraganizer:hiraganizer};
 }();
 
@@ -181,6 +182,18 @@ function mixInLowerCasePatterns(romanizer){
 			f(kanaKey);
 		});
 	});
+}
+
+function mixInHiraganizedPrefixPatterns(hiraganizer){
+	var hiraganizedPrefixPatterns = {};
+	Object.keys(hiraganizer).forEach(function(key){
+		var value = hiraganizer[key];
+		if(key.charAt(0) == 'n'){
+			hiraganizedPrefixPatterns['ん'+key.substring(1)] = value;
+		}
+	});
+
+	return Object.assign(hiraganizer, hiraganizedPrefixPatterns);
 }
 
 /**

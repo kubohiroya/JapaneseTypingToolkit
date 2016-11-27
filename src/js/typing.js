@@ -278,7 +278,10 @@ function InputField(document, element){
             }
         }
 
-        var hiraganized = kana.hiraganizeOf(r + ch);
+        var hiraganized = kana.hiraganize(r + ch);
+        if(hiraganized && hiraganized.seq) {
+            hiraganized = hiraganized.seq.join('');
+        }
 
         if(hiraganized){
             if(typeof(hiraganized) == 'string') {
@@ -305,13 +308,13 @@ function setupTypingPracticeElement(document, src){
     var mainPanel = new MainPanel(document, document.getElementById("main"));
     var kanjiPromptField = new PromptField(document, document.getElementById('kanji'));
     var kanaPromptField = new PromptField(document, document.getElementById('kana'));
-    var romanPromptField = new RomanCodePromptField(document, 'roman');
+    //var romanPromptField = new RomanCodePromptField(document, 'roman');
     var inputField = new InputField(document, document.getElementById('typed'));
 
     src.next();
     kanjiPromptField.setText(src.getCurrentKanjiText());
     kanaPromptField.setText(src.getCurrentKanaText());
-    romanPromptField.setRomanCode(src.getCurrentRomanCode());
+    //romanPromptField.setRomanCode(src.getCurrentRomanCode());
 
     document.addEventListener("keydown", function (e) {
         if(! mainPanel.isEnabled()){
@@ -337,7 +340,7 @@ function setupTypingPracticeElement(document, src){
             src.next();
             kanjiPromptField.setText(src.getCurrentKanjiText());
             kanaPromptField.setText(src.getCurrentKanaText());
-            romanPromptField.setRomanCode(src.getCurrentRomanCode());
+            //romanPromptField.setRomanCode(src.getCurrentRomanCode());
 
             inputField.setCursor(0);
 
@@ -389,7 +392,7 @@ function setupTypingPracticeElement(document, src){
     mainPanel.setEnabled(false);
     kanjiPromptField.setEnabled(false);
     kanaPromptField.setEnabled(false);
-    romanPromptField.setEnabled(false);
+    //romanPromptField.setEnabled(false);
     inputField.setEnabled(false);
     inputField.setCursorBlink(false);
 
@@ -397,7 +400,7 @@ function setupTypingPracticeElement(document, src){
         mainPanel.setEnabled(true);
         kanjiPromptField.setEnabled(true);
         kanaPromptField.setEnabled(true);
-        romanPromptField.setEnabled(false);
+        //romanPromptField.setEnabled(false);
         inputField.setEnabled(true);
         inputField.setCursorBlink(true);
     }, false);
@@ -407,7 +410,7 @@ function setupTypingPracticeElement(document, src){
         mainPanel.setEnabled(false);
         kanjiPromptField.setEnabled(false);
         kanaPromptField.setEnabled(false);
-        romanPromptField.setEnabled(false);
+        //romanPromptField.setEnabled(false);
         inputField.setEnabled(false);
         inputField.setCursorBlink(false);
     }, false);

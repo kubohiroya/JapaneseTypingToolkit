@@ -272,7 +272,7 @@ function InputField(document, element){
                 this.appendChar(cursor, ch);
                 this.forwardCursor();
                 return;
-            }if(0 < 'kstnhfmrwxlgdzjbvp'.indexOf(ch)) {
+            }if(0 <= "kstnhfmrwxlgdzjbvp,./\\[]=-`".indexOf(ch)) {
                 this.replaceText(cursor - r.length, cursor - r.length, 'ん');
                 r = r.substring(1);
             }
@@ -282,9 +282,12 @@ function InputField(document, element){
 
         if(hiraganized){
             if(typeof(hiraganized) == 'string') {
-                console.log(cursor, ch, ':', r, hiraganized, ':', cursor - r.length, hiraganized.length - r.length);
+                //console.log(cursor, ch, ':', r, hiraganized, ':', cursor - r.length, hiraganized.length - r.length);
                 this.replaceText(cursor - r.length, cursor - 1, hiraganized);
                 this.forwardCursor(hiraganized.length - r.length);
+            }else{
+                this.replaceText(cursor - r.length, cursor - 1, hiraganized[0]);
+                this.forwardCursor(hiraganized[0].length - r.length);
             }
         }else{
             this.appendChar(cursor, ch);

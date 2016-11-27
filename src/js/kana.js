@@ -262,6 +262,9 @@ function hiraganize(src){
 					target.push(code);
 					i += (j - 1);
 					return;
+				}else if(j == 1){
+					target.push(pattern);
+					return;
 				}
 			}
 			target.push(hiraganizeOf(s[i]));

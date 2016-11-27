@@ -196,6 +196,11 @@ describe('hiraganize', function() {
         var b = kana.hiraganize('shixyuxtsuchou');
         assert.deepEqual(a, b);
     });
+    it('「sysyshixyuxtsuchou」をローマ字で入力する際の変換後のひらがなを配列として返す', function() {
+        var a = {seq:['s','y','s','y','し','ゅ','っ', 'ちょ', 'う']};
+        var b = kana.hiraganize('sysyshixyuxtsuchou');
+        assert.deepEqual(a, b);
+    });
 });
 
 

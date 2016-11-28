@@ -40,7 +40,7 @@ function keyCode(e) {
     }
 }
 
-function MainPanel(document, element, callback){
+function MainPanel(document, element){
     this.document = document;
     this.element = element;
     this._isEnabled = false;
@@ -70,6 +70,9 @@ function PromptField(document, element){
 
     this.setText = function(text){
         this.clearText();
+        if(! text){
+            return;
+        }
         text.split('').forEach(function(c){
             var span1 = document.createElement('span');
             var span2 = document.createElement('span');
@@ -238,13 +241,11 @@ function InputField(document, element){
     this.replaceText = function(start, end, str){
         //var end = (end < this.element.childElementCount - 1)? end : this.element.childElementCount - 1;
         for(var i = start ; i <= end; i++){
-            //console.log('remove', start, end, i, this.element.childNodes.item(start));
             this.element.removeChild(this.element.childNodes.item(start));
         }
 
-        for(var i = 0; i < str.length; i++){
-            //console.log('append', str.charAt(i));
-            this.appendChar(start+i, str.charAt(i));
+        for(var j = 0; j < str.length; j++){
+            this.appendChar(start+j, str.charAt(j));
         }
     };
 
@@ -279,23 +280,55 @@ function InputField(document, element){
         }
 
         var hiraganized = kana.hiraganize(r + ch);
-        if(hiraganized && hiraganized.seq) {
-            hiraganized = hiraganized.seq.join('');
-        }
-
         if(hiraganized){
-            if(typeof(hiraganized) == 'string') {
-                //console.log(cursor, ch, ':', r, hiraganized, ':', cursor - r.length, hiraganized.length - r.length);
-                this.replaceText(cursor - r.length, cursor - 1, hiraganized);
-                this.forwardCursor(hiraganized.length - r.length);
-            }else{
-                this.replaceText(cursor - r.length, cursor - 1, hiraganized[0]);
-                this.forwardCursor(hiraganized[0].length - r.length);
+            if(hiraganized.seq) {
+                hiraganized = hiraganized.seq.join('');
+            }else if (hiraganized instanceof Array) {
+                hiraganized = hiraganized[0];
             }
+            this.replaceText(cursor - r.length, cursor - 1, hiraganized);
+            this.forwardCursor(hiraganized.length - r.length);
         }else{
             this.appendChar(cursor, ch);
             this.forwardCursor();
         }
+    };
+
+    this.killLine = function(){
+        this.removeTextAfter(this.getCursor());
+    };
+
+    this.backspace = function(){
+        if(0 < this.getCursor()){
+            this.backCursor();
+            this.removeCharAt(this.getCursor());
+        }
+    };
+
+    this.delete = function(){
+        if(this.getCursor() < this.length()){
+            this.removeCharAt(this.getCursor());
+        }
+    };
+
+    this.backward = function(){
+        if(0 < this.getCursor()){
+            this.backCursor();
+        }
+    };
+
+    this.forward = function(){
+        if(this.getCursor() < this.length()) {
+            this.forwardCursor();
+        }
+    };
+
+    this.aheadOfLine = function(){
+        this.setCursor(0);
+    };
+
+    this.endOfLine = function() {
+        this.setCursor(this.length());
     };
 
     this.setEnabled(false);
@@ -345,34 +378,25 @@ function setupTypingPracticeElement(document, src){
             inputField.setCursor(0);
 
         } if(code == 75/*'k'*/ && e.ctrlKey){
-            inputField.removeTextAfter(inputField.getCursor());
+            inputField.killLine();
         }else if(code == 8 || (code == 72/*'h'*/ && e.ctrlKey)){ // backspace
-            if(0 < inputField.getCursor()){
-                inputField.backCursor();
-                inputField.removeCharAt(inputField.getCursor());
-            }
+            inputField.backspace();
         }else if(code == 46 || (code == 68/*'d'*/ && e.ctrlKey)){ // delete
-            if(inputField.getCursor() < inputField.length()){
-                inputField.removeCharAt(inputField.getCursor());
-            }
+            inputField.delete();
         }else if(code == 37 || (code == 66 /*'b'*/ && e.ctrlKey)){ // backward
-            if(0 < inputField.getCursor()){
-                inputField.backCursor();
-            }
+            inputField.backward();
         }else if(code == 39 || (code == 70 /*'f'*/ && e.ctrlKey)){ // forward
-            if(inputField.getCursor() < inputField.length()) {
-                inputField.forwardCursor();
-            }
+            inputField.forward();
         }else if(code == 65 /*'a'*/ && e.ctrlKey){ // ahead
-            inputField.setCursor(0);
+            inputField.aheadOfLine();
         }else if(code == 69 /*'e'*/ && e.ctrlKey){ // end
-            inputField.setCursor(inputField.length());
+            inputField.endOfLine();
         }else if(e.key.length == 1){
             inputField.appendRomanChar(inputField.getCursor(), e.key);
             //inputField.appendChar(inputField.getCursor(), e.key);
             //inputField.forwardCursor();
         }else{
-
+            //console.log(e.keyCode);
         }
 
         inputField.showCursor();
@@ -384,7 +408,7 @@ function setupTypingPracticeElement(document, src){
         if(! mainPanel.isEnabled()){
             return;
         }
-        var code = e.keyCode ? e.keyCode : e.which;
+        //var code = e.keyCode ? e.keyCode : e.which;
     }, false);
 
 

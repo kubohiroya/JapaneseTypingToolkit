@@ -11,8 +11,7 @@ function appendRomanCodeInputPrompt(element, code, d){
         d = [];
     }
     if(typeof(element)=='string'){
-        var selector = element;
-        element = d3.select(selector);
+        element = d3.select(element);
     }
     if(code instanceof Array){
         var candidates = element.append('div');
@@ -31,7 +30,6 @@ function appendRomanCodeInputPrompt(element, code, d){
     }else if(typeof(code) == 'string'){
         var div = element.append('div').attr("id","p_" + d.join('_')).text(code);
         div.data(d);
-        //console.log('setRomanCode', code, d);
     }
 }
 

@@ -201,6 +201,11 @@ describe('hiraganize', function() {
         var b = kana.hiraganize('sysyshixyuxtsuchou');
         assert.deepEqual(a, b);
     });
+    it('「,./」をローマ字で入力する際の変換後のひらがなを配列として返す', function() {
+        var a = {seq:[['、','，'],['。','．'],['・','／']]};
+        var b = kana.hiraganize(',./');
+        assert.deepEqual(a, b);
+    });
 });
 
 

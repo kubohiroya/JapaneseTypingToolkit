@@ -440,6 +440,7 @@ function setupTypingPracticeElement(document, src){
     }, false);
 }
 
+new RomanCodePromptField(document, 'x').setRomanCode(kana.romanize('久保裕也'));
 keyboard.initialize("en", document, "#keyboard");
 setupTypingPracticeElement(document, new TextSourceFactory.newInstance());
 

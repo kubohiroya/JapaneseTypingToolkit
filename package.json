@@ -37,7 +37,7 @@
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
     "webpack-spritesmith": "^0.2.6",
-    "yarn": "^0.16.0"
+    "yarn": "^0.17.3"
   },
   "dependencies": {
     "d3": "^4.3.0",
